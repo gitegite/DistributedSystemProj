@@ -34,6 +34,7 @@ namespace StudentManagerApp.Controllers
         {
             using (db = new AppDbContextDataContext())
             {
+                student.TimeStamp = null;
                 db.Students.InsertOnSubmit(student);
                 db.SubmitChanges();
             }
@@ -47,6 +48,7 @@ namespace StudentManagerApp.Controllers
                 var studentOld = db.Students.FirstOrDefault(s => s.Id == id);
                 studentOld.Grade = student.Grade;
                 studentOld.Name = student.Name;
+                studentOld.TimeStamp = null; 
                 db.SubmitChanges();
             }
         }

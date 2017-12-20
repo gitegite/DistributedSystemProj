@@ -86,6 +86,8 @@ namespace StudentManagerApp.Models
 		
 		private System.Nullable<decimal> _Grade;
 		
+		private System.Data.Linq.Binary _TimeStamp;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -96,6 +98,8 @@ namespace StudentManagerApp.Models
     partial void OnIdChanged();
     partial void OnGradeChanging(System.Nullable<decimal> value);
     partial void OnGradeChanged();
+    partial void OnTimeStampChanging(System.Data.Linq.Binary value);
+    partial void OnTimeStampChanged();
     #endregion
 		
 		public Student()
@@ -103,7 +107,7 @@ namespace StudentManagerApp.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Name
 		{
 			get
@@ -123,7 +127,7 @@ namespace StudentManagerApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public int Id
 		{
 			get
@@ -143,7 +147,7 @@ namespace StudentManagerApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grade", DbType="Decimal(18,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grade", DbType="Decimal(18,2)", UpdateCheck=UpdateCheck.Never)]
 		public System.Nullable<decimal> Grade
 		{
 			get
@@ -159,6 +163,26 @@ namespace StudentManagerApp.Models
 					this._Grade = value;
 					this.SendPropertyChanged("Grade");
 					this.OnGradeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this.OnTimeStampChanging(value);
+					this.SendPropertyChanging();
+					this._TimeStamp = value;
+					this.SendPropertyChanged("TimeStamp");
+					this.OnTimeStampChanged();
 				}
 			}
 		}
