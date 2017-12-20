@@ -10,6 +10,7 @@ namespace StudentManagerApp.Controllers
 {
     public class StudentsController : ApiController
     {
+        public static long UnixTimeNow => DateTimeOffset.Now.ToUnixTimeSeconds();
         private AppDbContextDataContext db;
         // GET: api/Student
         public IEnumerable<Student> Get()
@@ -34,7 +35,7 @@ namespace StudentManagerApp.Controllers
         {
             using (db = new AppDbContextDataContext())
             {
-                student.TimeStamp = null;
+                student.TimeStamp = UnixTimeNow;
                 db.Students.InsertOnSubmit(student);
                 db.SubmitChanges();
             }
@@ -48,7 +49,7 @@ namespace StudentManagerApp.Controllers
                 var studentOld = db.Students.FirstOrDefault(s => s.Id == id);
                 studentOld.Grade = student.Grade;
                 studentOld.Name = student.Name;
-                studentOld.TimeStamp = null; 
+                studentOld.TimeStamp = UnixTimeNow; 
                 db.SubmitChanges();
             }
         }

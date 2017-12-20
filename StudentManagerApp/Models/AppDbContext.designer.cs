@@ -86,7 +86,7 @@ namespace StudentManagerApp.Models
 		
 		private System.Nullable<decimal> _Grade;
 		
-		private System.Data.Linq.Binary _TimeStamp;
+		private System.Nullable<long> _TimeStamp;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -98,7 +98,7 @@ namespace StudentManagerApp.Models
     partial void OnIdChanged();
     partial void OnGradeChanging(System.Nullable<decimal> value);
     partial void OnGradeChanged();
-    partial void OnTimeStampChanging(System.Data.Linq.Binary value);
+    partial void OnTimeStampChanging(System.Nullable<long> value);
     partial void OnTimeStampChanged();
     #endregion
 		
@@ -107,7 +107,7 @@ namespace StudentManagerApp.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)")]
 		public string Name
 		{
 			get
@@ -127,7 +127,7 @@ namespace StudentManagerApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -147,7 +147,7 @@ namespace StudentManagerApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grade", DbType="Decimal(18,2)", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grade", DbType="Decimal(18,2)")]
 		public System.Nullable<decimal> Grade
 		{
 			get
@@ -167,8 +167,8 @@ namespace StudentManagerApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary TimeStamp
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="BigInt")]
+		public System.Nullable<long> TimeStamp
 		{
 			get
 			{
